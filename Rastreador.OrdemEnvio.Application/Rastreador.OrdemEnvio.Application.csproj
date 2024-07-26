@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Rastreador.OrdemEnvio.Core\Rastreador.OrdemEnvio.Core.csproj" />
+    <ProjectReference Include="..\Rastreador.OrdemEnvio.Infrastructure\Rastreador.OrdemEnvio.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
