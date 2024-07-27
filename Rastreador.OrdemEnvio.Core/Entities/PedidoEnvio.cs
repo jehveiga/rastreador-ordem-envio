@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Rastreador.OrdemEnvio.Core.Enums;
+﻿using Rastreador.OrdemEnvio.Core.Enums;
 using Rastreador.OrdemEnvio.Core.ValueObjects;
 
 namespace Rastreador.OrdemEnvio.Core.Entities
@@ -12,6 +7,7 @@ namespace Rastreador.OrdemEnvio.Core.Entities
     {
         public PedidoEnvio(string descricao, decimal pesoEmKg, EnderecoEntrega enderecoEntrega) : base()
         {
+            CodigoEnvio = GerarCodigoEnvio();
             Descricao = descricao;
             PostadoEm = DateTime.Now;
             PesoEmKg = pesoEmKg;
@@ -42,8 +38,8 @@ namespace Rastreador.OrdemEnvio.Core.Entities
             }
         }
 
-            // Método responsável por  gerar o código de envio
-            private string GerarCodigoEnvio()
+        // Método responsável por  gerar o código de envio
+        private string GerarCodigoEnvio()
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             const string numbers = "0123456789";

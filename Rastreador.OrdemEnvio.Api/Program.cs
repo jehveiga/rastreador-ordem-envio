@@ -1,4 +1,7 @@
 
+using Rastreador.OrdemEnvio.Application;
+using Rastreador.OrdemEnvio.Infrastructure;
+
 namespace Rastreador.OrdemEnvio.Api
 {
     public class Program
@@ -7,7 +10,13 @@ namespace Rastreador.OrdemEnvio.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            var configuration = builder.Configuration;
+
             // Add services to the container.
+            builder
+                .Services
+                .AddInfrastructure(configuration)
+                .AddApplication();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

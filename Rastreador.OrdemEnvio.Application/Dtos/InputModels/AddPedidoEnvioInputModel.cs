@@ -1,19 +1,14 @@
 ﻿using Rastreador.OrdemEnvio.Core.Entities;
 using Rastreador.OrdemEnvio.Core.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Rastreador.OrdemEnvio.Application.Dtos.InputModels
 {
     public class AddPedidoEnvioInputModel
     {
-        public string Descricao { get; set; }
+        public string Descricao { get; set; } = string.Empty;
         public decimal PesoEmKg { get; set; }
-        public EnderecoEntregaInputModel EnderecoEntrega { get; set; }
-        public List<EnvioServiceInputModel> Servicos { get; set; }
+        public EnderecoEntregaInputModel EnderecoEntrega { get; set; } = new EnderecoEntregaInputModel();
+        public List<EnvioServiceInputModel> Servicos { get; set; } = new List<EnvioServiceInputModel>();
 
         public PedidoEnvio ToEntity()
             => new PedidoEnvio(
@@ -26,13 +21,13 @@ namespace Rastreador.OrdemEnvio.Application.Dtos.InputModels
 
     public class EnderecoEntregaInputModel
     {
-        public string Rua { get; set; }
-        public string Numero { get; set; }
-        public string Cep { get; set; }
-        public string Cidade { get; set; }
-        public string Estado { get; set; }
-        public string Pais { get; set; }
-        public string EmailContato { get; set; }
+        public string Rua { get; set; } = string.Empty;
+        public string Numero { get; set; } = string.Empty;
+        public string Cep { get; set; } = string.Empty;
+        public string Cidade { get; set; } = string.Empty;
+        public string Estado { get; set; } = string.Empty;
+        public string Pais { get; set; } = string.Empty;
+        public string EmailContato { get; set; } = string.Empty;
 
         // Metodo resposanvel por entregar um objeto de valor EnderecoEntrega
         public EnderecoEntrega ToValueObject()
@@ -41,7 +36,7 @@ namespace Rastreador.OrdemEnvio.Application.Dtos.InputModels
 
     public class EnvioServiceInputModel
     {
-        public string Titulo { get; set; }
+        public string Titulo { get; set; } = string.Empty;
         public decimal PrecoPorKg { get; set; }
         public decimal PrecoFixado { get; set; }
 

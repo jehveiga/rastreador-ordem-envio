@@ -1,28 +1,23 @@
 ﻿using Rastreador.OrdemEnvio.Application.Dtos.ViewModels;
-using Rastreador.OrdemEnvio.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Rastreador.OrdemEnvio.Core.Repositories;
 
 namespace Rastreador.OrdemEnvio.Application.Services
 {
     public class EnvioServiceService : IEnvioServiceService
     {
-        public Task<List<EnvioServiceViewModel>> GetAll()
-        {
-            var envioServices = new List<EnvioService> {
-                new EnvioService("Selo", 0, 1.2m),
-                new EnvioService("Envio com Registro", 2.2m, 5),
-                new EnvioService("Envio sem Registro", 1, 3)
-            };
+        private readonly IEnvioServicoRepository _repository;
 
-            return Task.FromResult(
-                envioServices
-                    .Select(s => new EnvioServiceViewModel(s.Id, s.Titulo, s.PrecoPorKg, s.PrecoPorKg))
-                    .ToList()
-            );
+        public EnvioServiceService(IEnvioServicoRepository repository)
+        {
+            _repository = repository;
+        }
+
+        public async Task<List<EnvioServiceViewModel>> GetAll()
+        {
+            var envioServices = await _repository.GetAllAsync();
+
+            return envioServices.Select(s => new EnvioServiceViewModel(s.Id, s.Titulo, s.PrecoPorKg, s.PrecoPorKg))
+                                .ToList();
         }
     }
 }

@@ -10,7 +10,7 @@
         }
 
         public string Titulo { get; private set; }
-        public decimal  PrecoPorKg { get; private set; }
+        public decimal PrecoPorKg { get; private set; }
         public decimal PrecoFixado { get; private set; }
     }
 }
