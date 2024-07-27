@@ -14,6 +14,21 @@ namespace Rastreador.OrdemEnvio.Infrastructure.Persistence
             modelBuilder.Entity<EnvioService>().HasData(new EnvioService("Envio internacional", 5.25m, 15));
             modelBuilder.Entity<EnvioService>().HasData(new EnvioService("Caixa tamanho P", 0, 5));
 
+            modelBuilder.Entity<PedidoEnvio>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.OwnsOne(e => e.EnderecoEntrega, endereco =>
+                {
+                    endereco.Property(e => e.Rua).IsRequired();
+                    endereco.Property(e => e.Numero).IsRequired();
+                    endereco.Property(e => e.Cep).IsRequired();
+                    endereco.Property(e => e.Cidade).IsRequired();
+                    endereco.Property(e => e.Estado).IsRequired();
+                    endereco.Property(e => e.Pais).IsRequired();
+                    endereco.Property(e => e.EmailContato).IsRequired();
+                });
+            });
+
             base.OnModelCreating(modelBuilder);
         }
     }
